@@ -12,6 +12,12 @@
         <Root level="all">
             <AppenderRef ref="Console"/>
         </Root>
+        <Logger name="hu.sisisisi.szamforgato.GameView" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="hu.sisisisi.szamforgato.views.PreGameView" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
         <Logger name="hu.sisisisi.szamforgato.GameController" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>

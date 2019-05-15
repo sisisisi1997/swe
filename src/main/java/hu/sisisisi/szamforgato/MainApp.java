@@ -22,7 +22,8 @@ public class MainApp extends Application {
     private Map<Pages, String> fxmlFiles = Map.ofEntries(
             Map.entry(Pages.MainMenu, "menu.fxml"),
             Map.entry(Pages.Settings, "settings.fxml"),
-            Map.entry(Pages.Game, "game.fxml")
+            Map.entry(Pages.Game, "game.fxml"),
+            Map.entry(Pages.PreGame, "PreGame.fxml")
     );
 
     private Stage stage;
@@ -45,13 +46,11 @@ public class MainApp extends Application {
         stage.show();
     }
 
-    public Scene showPage(Pages page) throws IOException
+    public void showPage(Pages page) throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource(fxmlFiles.get(page)));
         Scene scene = new Scene(root);
-
         stage.setScene(scene);
-        return scene;
     }
 
     /**
@@ -70,6 +69,7 @@ public class MainApp extends Application {
     {
         MainMenu,
         Settings,
+        PreGame,
         Game
     }
 }

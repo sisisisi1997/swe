@@ -18,7 +18,7 @@ public class MainMenuController {
     {
         try
         {
-            MainApp.getAppInstance().showPage(MainApp.Pages.Game);
+            MainApp.getAppInstance().showPage(MainApp.Pages.PreGame);
         }
         catch(IOException e)
         {

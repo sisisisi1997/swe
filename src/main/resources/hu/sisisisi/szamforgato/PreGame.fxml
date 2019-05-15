@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="hu.sisisisi.szamforgato.views.PreGameView"
+          prefWidth="800.0"
+          prefHeight="600.0">
+    <columnConstraints>
+        <ColumnConstraints percentWidth="30" />
+        <ColumnConstraints percentWidth="20" />
+        <ColumnConstraints percentWidth="20" />
+        <ColumnConstraints percentWidth="30" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints percentHeight="20" />
+        <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="10" />
+        <RowConstraints prefHeight="60" />
+    </rowConstraints>
+
+    <Text
+        GridPane.halignment="CENTER"
+        GridPane.columnIndex="1"
+        GridPane.rowIndex="1"
+        GridPane.columnSpan="2"
+        GridPane.fillWidth="true"
+        GridPane.fillHeight="true"
+        text="Új játék"/>
+    <Text
+        GridPane.columnIndex="1"
+        GridPane.rowIndex="2"
+        text="Tábla mérete:" />
+    <TextField
+        fx:id="tableSizeText"
+        text="5"
+        GridPane.columnIndex="2"
+        GridPane.rowIndex="2" />
+    <Button
+        text="Kezdés"
+        onMouseClicked="#startButtonClicked"
+        GridPane.columnIndex="1"
+        GridPane.rowIndex="3"
+        GridPane.columnSpan="2"
+        maxWidth="Infinity"
+        GridPane.fillWidth="true"/>
+
+</GridPane>

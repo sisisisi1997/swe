@@ -12,6 +12,15 @@ public class GameState
     private int size;
 
     /**
+     * Ez a metódus visszatér a tábla méretével.
+     * @return A tábla mérete.
+     */
+    public int getSize()
+    {
+        return size;
+    }
+
+    /**
      * Ez a getter metódus visszaadja a megadott koordinátán fellelhető számot.
      * @param column A koordináta X eleme.
      * @param row A koordináta Y eleme.
@@ -31,9 +40,9 @@ public class GameState
     {
         this.size = rowsColumns;
         this.states = new int[rowsColumns][rowsColumns];
-        for(int column = 0; column < rowsColumns; ++ column)
+        for(int row = 0; row < rowsColumns; ++ row)
         {
-            for(int row = 0; row < rowsColumns; ++ row)
+            for(int column = 0; column < rowsColumns; ++ column)
             {
                 this.states[column][row] = (rowsColumns * row) + column + 1;
             }
@@ -50,10 +59,10 @@ public class GameState
            Direction.Down
         };
 
-        for(int i = 0, max = rn.nextInt(100); i < max; ++ i)
-        {
-            this.ModifyState(rn.nextInt(this.size), directions[rn.nextInt(directions.length)]);
-        }
+        //for(int i = 0, max = 1; i < max; ++ i)
+        //{
+            this.modifyState(rn.nextInt(this.size), directions[rn.nextInt(directions.length)]);
+        //}
     }
 
     /**
@@ -62,7 +71,7 @@ public class GameState
      * @param rowOrCol A módosítani kívánt sor vagy oszlop 0-tól kezdődő indexű sorszáma.
      * @param direction Az irány, amelyikbe csúsztatni szeretnénk.
      */
-    public void ModifyState(int rowOrCol, Direction direction)
+    public void modifyState(int rowOrCol, Direction direction)
     {
         switch(direction)
         {
@@ -96,8 +105,29 @@ public class GameState
                 {
                     states[col][rowOrCol] = states[col - 1][rowOrCol];
                 }
-                states[rowOrCol][0] = lastCol;
+                states[0][rowOrCol] = lastCol;
                 break;
         }
+    }
+
+    /**
+     * Megállapítja, hogy a jelenlegi játékállapot nyerő állapot-e, vagy nem.
+     * A nyerő állapot azt jelenti, hogy balról jobbra, majd fentről lefelé a számok egyesével növekednek.
+     * @return Egy boolean változó, mely jelzi, hogy ebben az állapotban van-e a játékállapot.
+     */
+    public boolean isWinningState()
+    {
+        for(int col = 0; col < this.size; ++ col)
+        {
+            for(int row = 0; row < this.size; ++ row)
+            {
+                if(this.states[col][row] != (this.size * row) + col + 1)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
