@@ -1,7 +1,8 @@
-package hu.sisisisi.szamforgato;
+package hu.sisisisi.szamforgato.views;
 
+import hu.sisisisi.szamforgato.GameController;
+import hu.sisisisi.szamforgato.IGameView;
 import hu.sisisisi.szamforgato.model.Direction;
-import hu.sisisisi.szamforgato.model.GameState;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.geometry.*;
@@ -12,8 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
+import javafx.scene.text.Font;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,12 +39,11 @@ public class GameView implements IGameView
 
     public void initialize()
     {
-        GameController c = GameController.getInstance();
         try
         {
-            c.setGameView(this);
+            GameController.getInstance().setGameView(this);
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
             System.out.println("Ooopsie");
         }
@@ -172,22 +171,17 @@ public class GameView implements IGameView
         gameGrid.getChildren().clear();
         gameGrid.getColumnConstraints().clear();
         gameGrid.getRowConstraints().clear();
-        gameGrid.setGridLinesVisible(true);
 
         labels = new Label[rowColCount][rowColCount];
+        logger.debug("Cleared previous game");
 
         setGridFrame(rowColCount + 2);
+        logger.debug("set frame");
         if(!addArrows())
         {
-            try
-            {
-                MainApp.getAppInstance().stop();
-            }
-            catch(Exception e)
-            {
-                logger.error("Sikertelen kilépés a játékból hiba után.");
-            }
+            return;
         }
+        logger.debug("added arrows");
 
         for(int column = 0; column < rowColCount; ++ column)
         {
@@ -199,8 +193,10 @@ public class GameView implements IGameView
                 labels[column][row] = l;
             }
         }
+        logger.debug("set labels");
 
-        selectCell(0, 0);
+        Label stepCounter = new Label("Lépések száma: 0");
+        gameGrid.add(stepCounter, 2, rowColCount + 2, 1, 1);
     }
 
     public void selectCell(int col, int row)
@@ -245,14 +241,25 @@ public class GameView implements IGameView
         gameGrid.getChildren().forEach(e -> e.setVisible(false));
 
         Label youWinText = new Label("Gratulálok! Nyertél!");
-        youWinText.setBackground(new Background(new BackgroundFill(Color.RED, new CornerRadii(0), null)));
+        youWinText.setFont(new Font(30));
+        youWinText.setTextFill(Color.DARKBLUE);
         GridPane.setValignment(youWinText, VPos.BOTTOM);
         GridPane.setHalignment(youWinText, HPos.CENTER);
-        gameGrid.add(youWinText, 1, 0, 1, 1);
+        gameGrid.add(youWinText, 1, 0, rowColCount + 2, 1);
 
         Button retryButton = new Button("Új játék");
         retryButton.setMaxWidth(Double.POSITIVE_INFINITY);
         GridPane.setFillWidth(retryButton, true);
         gameGrid.add(retryButton, 1, 1, rowColCount + 2, rowColCount + 2);
+
+        retryButton.setOnMouseClicked((mouseEvent ->
+        {
+            GameController.getInstance().createGameState(rowColCount);
+        }));
+    }
+
+    public void updateStepCount(int count)
+    {
+
     }
 }

@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
-public class MainMenuController {
+public class MainMenuView {
     @FXML
     private GridPane mainMenu;
 

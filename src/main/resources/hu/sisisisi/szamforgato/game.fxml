@@ -10,7 +10,7 @@
     fx:id="gameGrid"
     xmlns="http://javafx.com/javafx"
     xmlns:fx="http://javafx.com/fxml"
-    fx:controller="hu.sisisisi.szamforgato.GameView"
+    fx:controller="hu.sisisisi.szamforgato.views.GameView"
     prefWidth="800"
     prefHeight="600"
     gridLinesVisible="true">

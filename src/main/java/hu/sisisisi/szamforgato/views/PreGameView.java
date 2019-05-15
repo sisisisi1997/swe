@@ -20,7 +20,7 @@ public class PreGameView
     public void startButtonClicked(MouseEvent e)
     {
         int size = Integer.parseInt(tableSizeText.getText());
-        GameController.getInstance().gameStarted(size);
+        GameController.getInstance().createGameState(size);
         logger.info("Játéktábla mérete: " + size);
 
         try
