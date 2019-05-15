@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane
+    xmlns:fx="http://javafx.com/fxml/1"
+    xmlns="http://javafx.com/javafx/8.0.171"
+    fx:controller="hu.sisisisi.szamforgato.MainMenuController"
+    fx:id="mainMenu"
+    prefWidth="800"
+    prefHeight="600"
+    gridLinesVisible="true">
+
+    <columnConstraints>
+        <ColumnConstraints percentWidth="30" />
+        <ColumnConstraints percentWidth="40" />
+        <ColumnConstraints percentWidth="30" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints percentHeight="15" />
+    </rowConstraints>
+
+    <Button
+        GridPane.columnIndex="1"
+        GridPane.rowIndex="1"
+        onAction="#handleNewGameAction"
+        text="Új játék" />
+
+    <Button
+        GridPane.columnIndex="1"
+        GridPane.rowIndex="2"
+        onAction="#handleSettingsAction"
+        text="Beállítások" />
+</GridPane>
