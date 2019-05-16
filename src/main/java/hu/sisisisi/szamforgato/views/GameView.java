@@ -15,12 +15,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-import org.apache.velocity.runtime.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
-import java.net.URL;
 
 public class GameView implements IGameView
 {
@@ -48,7 +44,7 @@ public class GameView implements IGameView
         }
         catch(Exception ex)
         {
-            System.out.println("Ooopsie");
+            logger.error("A game view megjelenítése sikertelen.");
         }
 
         gameGrid.setOnMouseClicked(this::gameGridMouseClick);
@@ -58,12 +54,13 @@ public class GameView implements IGameView
     {
         try
         {
-            leftImage = new ImageView(new Image(this.getClass().getResource("../Left.png").openStream()));
-            rightImage = new ImageView(new Image(this.getClass().getResource("../Right.png").openStream()));
-            upImage = new ImageView(new Image(this.getClass().getResource("../Up.png").openStream()));
-            downImage = new ImageView(new Image(this.getClass().getResource("../Down.png").openStream()));
+            ClassLoader l = GameView.class.getClassLoader();
+            leftImage = new ImageView(new Image(l.getResource("Left.png").openStream()));
+            rightImage = new ImageView(new Image(l.getResource("Right.png").openStream()));
+            upImage = new ImageView(new Image(l.getResource("Up.png").openStream()));
+            downImage = new ImageView(new Image(l.getResource("Down.png").openStream()));
         }
-        catch (IOException e)
+        catch (Exception e)
         {
            logger.error("Nem lehetett betölteni a nyílgombokat, kilépés.");
            return false;

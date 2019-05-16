@@ -19,6 +19,7 @@ public class GameController
     private int selectedRow,
                 selectedCol,
                 numberOfSteps = 0;
+    private String name = "default";
 
     /**
      * Visszaadja a vezérlő példányát. Ha ez nem létezik, elkészít egy példányt.
@@ -34,6 +35,15 @@ public class GameController
     private GameController()
     {
 
+    }
+
+    /**
+     * Set the name of the player playing this game.
+     * @param name The name of the player.
+     */
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
     /**
@@ -134,6 +144,7 @@ public class GameController
             gameView.updateStepCount(numberOfSteps);
             if(gameState.isWinningState())
             {
+                ScoreBoardHandler.saveScore(this.gameState.getSize(), this.name, numberOfSteps);
                 gameView.displayWin();
             }
         }

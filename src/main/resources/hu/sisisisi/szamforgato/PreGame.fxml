@@ -22,6 +22,7 @@
         <RowConstraints percentHeight="20" />
         <RowConstraints percentHeight="10" />
         <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="10" />
         <RowConstraints prefHeight="60" />
     </rowConstraints>
 
@@ -42,11 +43,20 @@
         text="5"
         GridPane.columnIndex="2"
         GridPane.rowIndex="2" />
+    <Label
+        GridPane.columnIndex="1"
+        GridPane.rowIndex="3"
+        text="Játékos neve:" />
+    <TextField
+        fx:id="playerNameText"
+        text="default"
+        GridPane.columnIndex="2"
+        GridPane.rowIndex="3" />
     <Button
         text="Kezdés"
         onMouseClicked="#startButtonClicked"
         GridPane.columnIndex="1"
-        GridPane.rowIndex="3"
+        GridPane.rowIndex="4"
         GridPane.columnSpan="2"
         maxWidth="Infinity"
         GridPane.fillWidth="true"/>

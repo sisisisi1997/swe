@@ -112,7 +112,13 @@ public class MainMenuView
     }
 
     public void handleScoreClick(MouseEvent event) {
-        ScoreBoardHandler.getScores(5);
-        ScoreBoardHandler.saveScore(5, "teszt", 2);
+        try
+        {
+            MainApp.getAppInstance().showPage(MainApp.Pages.ScoreBoard);
+        }
+        catch (IOException e)
+        {
+
+        }
     }
 }

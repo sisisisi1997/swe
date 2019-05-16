@@ -23,7 +23,8 @@ public class MainApp extends Application {
             Map.entry(Pages.MainMenu, "menu.fxml"),
             Map.entry(Pages.Settings, "settings.fxml"),
             Map.entry(Pages.Game, "game.fxml"),
-            Map.entry(Pages.PreGame, "PreGame.fxml")
+            Map.entry(Pages.PreGame, "PreGame.fxml"),
+            Map.entry(Pages.ScoreBoard, "scores.fxml")
     );
 
     private Stage stage;
@@ -70,6 +71,7 @@ public class MainApp extends Application {
         MainMenu,
         Settings,
         PreGame,
-        Game
+        Game,
+        ScoreBoard
     }
 }

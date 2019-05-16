@@ -15,11 +15,15 @@ public class PreGameView
     private static Logger logger = LoggerFactory.getLogger(PreGameView.class);
 
     @FXML
+    public TextField playerNameText;
+
+    @FXML
     private TextField tableSizeText;
 
     public void startButtonClicked(MouseEvent e)
     {
         int size = Integer.parseInt(tableSizeText.getText());
+        GameController.getInstance().setName(playerNameText.getText());
         GameController.getInstance().createGameState(size);
         logger.info("Játéktábla mérete: " + size);
 
