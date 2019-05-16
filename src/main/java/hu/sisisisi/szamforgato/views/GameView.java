@@ -15,10 +15,12 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import org.apache.velocity.runtime.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class GameView implements IGameView
 {
@@ -28,6 +30,7 @@ public class GameView implements IGameView
     private GridPane gameGrid;
 
     private Label[][] labels;
+    private Label stepCounter;
 
     private int rowColCount,
                 sidePercent = 30;
@@ -55,10 +58,10 @@ public class GameView implements IGameView
     {
         try
         {
-            leftImage = new ImageView(new Image(this.getClass().getResource("Left.png").openStream()));
-            rightImage = new ImageView(new Image(this.getClass().getResource("Right.png").openStream()));
-            upImage = new ImageView(new Image(this.getClass().getResource("Up.png").openStream()));
-            downImage = new ImageView(new Image(this.getClass().getResource("Down.png").openStream()));
+            leftImage = new ImageView(new Image(this.getClass().getResource("../Left.png").openStream()));
+            rightImage = new ImageView(new Image(this.getClass().getResource("../Right.png").openStream()));
+            upImage = new ImageView(new Image(this.getClass().getResource("../Up.png").openStream()));
+            downImage = new ImageView(new Image(this.getClass().getResource("../Down.png").openStream()));
         }
         catch (IOException e)
         {
@@ -75,6 +78,7 @@ public class GameView implements IGameView
         GridPane.setValignment(upImage, VPos.CENTER);
         GridPane.setValignment(rightImage, VPos.CENTER);
         GridPane.setValignment(downImage, VPos.CENTER);
+
 
         setArrowSize();
 
@@ -93,7 +97,6 @@ public class GameView implements IGameView
         upImage.setOnMouseClicked((mouseEvent    -> GameController.getInstance().userInputReceived(Direction.Up)));
         downImage.setOnMouseClicked((mouseEvent  -> GameController.getInstance().userInputReceived(Direction.Down)));
 
-        logger.debug("Nyílgombok sikeresen hozzáadva.");
         return true;
     }
 
@@ -195,8 +198,10 @@ public class GameView implements IGameView
         }
         logger.debug("set labels");
 
-        Label stepCounter = new Label("Lépések száma: 0");
-        gameGrid.add(stepCounter, 2, rowColCount + 2, 1, 1);
+        stepCounter = new Label();
+        this.updateStepCount(0); // hozzáadhatnánk a szöveget közvetlenül is, de úgy két helyen kellene megváltoztatni a formátumot változtatás esetén, ami bugok forrása
+        GridPane.setValignment(stepCounter, VPos.TOP);
+        gameGrid.add(stepCounter, 2, rowColCount + 3, rowColCount, 1);
     }
 
     public void selectCell(int col, int row)
@@ -260,6 +265,6 @@ public class GameView implements IGameView
 
     public void updateStepCount(int count)
     {
-
+        stepCounter.setText("Lépések száma: " + count);
     }
 }

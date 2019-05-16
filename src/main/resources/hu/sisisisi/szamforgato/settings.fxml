@@ -9,7 +9,7 @@
 <GridPane
     xmlns="http://javafx.com/javafx"
     xmlns:fx="http://javafx.com/fxml"
-    fx:controller="hu.sisisisi.szamforgato.SettingsController"
+    fx:controller="hu.sisisisi.szamforgato.views.SettingsView"
     prefWidth="800"
     prefHeight="600">
 

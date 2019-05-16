@@ -68,6 +68,7 @@ public class GameController
                 this.gameView.updateCell(col, row, this.gameState.getNumberAt(col, row));
             }
         }
+        gameView.updateStepCount(this.numberOfSteps);
     }
 
     /**
@@ -83,6 +84,8 @@ public class GameController
             gameView.createGameTable(this.gameState.getSize());
             this.updateGameView();
             gameView.selectCell(0, 0);
+            this.selectedRow = 0;
+            this.selectedCol = 0;
         }
         logger.info(size + " méretű tábla beállítva");
     }
