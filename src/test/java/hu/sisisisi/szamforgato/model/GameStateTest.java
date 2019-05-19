@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GameStateTest {
+public class GameStateTest {
     GameState state = new GameState(5);
     GameState state2 = new GameState(10);
 
