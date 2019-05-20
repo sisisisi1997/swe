@@ -1,6 +1,7 @@
 package hu.sisisisi.szamforgato.controller;
 
 import hu.sisisisi.szamforgato.ScoreBoardHandler;
+import hu.sisisisi.szamforgato.SettingsHandler;
 import hu.sisisisi.szamforgato.modelling.Direction;
 import hu.sisisisi.szamforgato.modelling.GameState;
 import org.slf4j.Logger;
@@ -20,7 +21,7 @@ public class GameController
     private int selectedRow,
             selectedCol,
             numberOfSteps = 0;
-    private String name = "default";
+    private String name;
 
     /**
      * Visszaadja a vezérlő példányát. Ha ez nem létezik, elkészít egy példányt.
@@ -35,7 +36,8 @@ public class GameController
 
     private GameController()
     {
-
+        SettingsHandler settings = SettingsHandler.getSettings();
+        this.setName(settings.getUsername());
     }
 
     /**

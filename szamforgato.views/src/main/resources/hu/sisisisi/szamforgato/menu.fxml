@@ -11,8 +11,7 @@
     fx:controller="hu.sisisisi.szamforgato.views.MainMenuView"
     fx:id="mainMenu"
     prefWidth="800"
-    prefHeight="600"
-    gridLinesVisible="true">
+    prefHeight="600">
 
     <columnConstraints>
         <ColumnConstraints percentWidth="30" />
@@ -24,27 +23,29 @@
     </rowConstraints>
 
     <Button
+        fx:id="newGameButton"
         GridPane.columnIndex="1"
         GridPane.rowIndex="1"
-        onAction="#handleNewGameAction"
+        onMouseClicked="#handleNewGameClick"
         text="Új játék" />
 
     <Button
+        fx:id="settingsButton"
         GridPane.columnIndex="1"
         GridPane.rowIndex="2"
-        onAction="#handleSettingsAction"
+        onMouseClicked="#handleSettingsClick"
         text="Beállítások" />
 
     <Button
+        fx:id="scoreBoardButton"
         GridPane.columnIndex="1"
         GridPane.rowIndex="3"
         onMouseClicked="#handleScoreClick"
         text="Ranglétra" />
 
     <Button
-        fx:id="exitButton"
         GridPane.columnIndex="1"
         GridPane.rowIndex="4"
-        onMouseClicked="#handleExitAction"
+        onMouseClicked="#handleExitClick"
         text="Kilépés" />
 </GridPane>

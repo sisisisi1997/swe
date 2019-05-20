@@ -7,9 +7,10 @@ import java.util.Random;
  * Az osztály egy játékállapotot reprezentál, és alkalmas annak manipulálására.
  * Egy játékállapot egy olyan NxN-es tömb, melynek minden eleme egy 1 és N^2 közötti szám, mely a tömbben egyedi.
  */
+@SuppressWarnings("ManualArrayCopy")
 public class GameState
 {
-    private int[][] states;
+    private int[][] state;
     private int size;
 
     /**
@@ -29,7 +30,12 @@ public class GameState
      */
     public int getNumberAt(int column, int row)
     {
-        return states[column][row];
+        return state[column][row];
+    }
+
+    public int[][] getState()
+    {
+        return this.state;
     }
 
     /**
@@ -40,12 +46,12 @@ public class GameState
     public GameState(int rowsColumns)
     {
         this.size = rowsColumns;
-        this.states = new int[rowsColumns][rowsColumns];
+        this.state = new int[rowsColumns][rowsColumns];
         for(int row = 0; row < rowsColumns; ++ row)
         {
             for(int column = 0; column < rowsColumns; ++ column)
             {
-                this.states[column][row] = (rowsColumns * row) + column + 1;
+                this.state[column][row] = (rowsColumns * row) + column + 1;
             }
         }
 
@@ -77,36 +83,36 @@ public class GameState
         switch(direction)
         {
             case Up:
-                int firstRow = states[rowOrCol][0];
+                int firstRow = state[rowOrCol][0];
                 for(int row = 1; row < this.size; ++ row)
                 {
-                    states[rowOrCol][row - 1] = states[rowOrCol][row];
+                    state[rowOrCol][row - 1] = state[rowOrCol][row];
                 }
-                states[rowOrCol][this.size - 1] = firstRow;
+                state[rowOrCol][this.size - 1] = firstRow;
                 break;
             case Down:
-                int lastRow = states[rowOrCol][this.size - 1];
+                int lastRow = state[rowOrCol][this.size - 1];
                 for(int row = this.size - 1; row > 0; -- row)
                 {
-                    states[rowOrCol][row] = states[rowOrCol][row - 1];
+                    state[rowOrCol][row] = state[rowOrCol][row - 1];
                 }
-                states[rowOrCol][0] = lastRow;
+                state[rowOrCol][0] = lastRow;
                 break;
             case Left:
-                int firstCol = states[0][rowOrCol];
+                int firstCol = state[0][rowOrCol];
                 for(int col = 1; col < this.size; ++ col)
                 {
-                    states[col - 1][rowOrCol] = states[col][rowOrCol];
+                    state[col - 1][rowOrCol] = state[col][rowOrCol];
                 }
-                states[this.size - 1][rowOrCol] = firstCol;
+                state[this.size - 1][rowOrCol] = firstCol;
                 break;
             case Right:
-                int lastCol = states[this.size - 1][rowOrCol];
+                int lastCol = state[this.size - 1][rowOrCol];
                 for(int col = this.size - 1; col > 0; -- col)
                 {
-                    states[col][rowOrCol] = states[col - 1][rowOrCol];
+                    state[col][rowOrCol] = state[col - 1][rowOrCol];
                 }
-                states[0][rowOrCol] = lastCol;
+                state[0][rowOrCol] = lastCol;
                 break;
         }
     }
@@ -122,7 +128,7 @@ public class GameState
         {
             for(int row = 0; row < this.size; ++ row)
             {
-                if(this.states[col][row] != (this.size * row) + col + 1)
+                if(this.state[col][row] != (this.size * row) + col + 1)
                 {
                     return false;
                 }

@@ -20,7 +20,7 @@ public class ScoreBoardHandler
     /**
      * Visszaadja az adott táblamérethez tartozó top 10 pontot (vagyis legkisebb lépésszámot).
      * @param tableSize A megadott táblaméret.
-     * @return A táblamérethez tartozó top 10 játékos neve és lépésszáma.
+     * @return A táblamérethez tartozó top 10 játékos neve és lépésszáma. Amennyiben hiba történik a fájlhoz való hozzáférésben, {@code null}-t ad vissza.
      */
     public static ArrayList<Pair<String, Integer>> getScores(int tableSize)
     {
@@ -35,15 +35,15 @@ public class ScoreBoardHandler
                 for(int i = 0; i < array.size(); i ++)
                 {
                     JsonObject e = array.get(i).getAsJsonObject();
-                    String nev = e.getAsJsonPrimitive("nev").getAsString();
-                    int lepes = e.getAsJsonPrimitive("lepes").getAsInt();
-                    result.add(new Pair<>(nev, lepes));
+                    String name = e.getAsJsonPrimitive("nev").getAsString();
+                    int steps = e.getAsJsonPrimitive("lepes").getAsInt();
+                    result.add(new Pair<>(name, steps));
                 }
             }
         }
         catch(IOException ex)
         {
-
+            return null;
         }
 
         return result;
@@ -60,15 +60,23 @@ public class ScoreBoardHandler
         ArrayList<Pair<String, Integer>> scores = getScores(tableSize);
         ArrayList<Pair<String, Integer>> newScores = new ArrayList<>();
         boolean added = false;
-        for(int i = 0; i < scores.size(); ++ i)
+        if(scores != null)
         {
-            if(scores.get(i).getValue() > steps && !added)
+            for(Pair<String, Integer> score : scores)
             {
-                newScores.add(new Pair<>(name, steps));
-                added = true;
+                if(score.getValue() > steps && !added)
+                {
+                    newScores.add(new Pair<>(name, steps));
+                    added = true;
+                }
+                newScores.add(score);
             }
-            newScores.add(scores.get(i));
         }
+        if(!added) // ha a megadott pontszám az utolsó, akkor nem fog hozzáadódni a ciklusban
+        {
+            newScores.add(new Pair<>(name, steps));
+        }
+
         while(newScores.size() > 10)
             newScores.remove(10);
 
@@ -82,16 +90,16 @@ public class ScoreBoardHandler
         }
 
         String result = new Gson().toJson(array);
-        try {
+        try
+        {
             Path p = Paths.get("board" + tableSize + ".json");
             FileWriter f = new FileWriter(p.toFile());
             f.write(result);
-            f.flush();
             f.close();
         }
         catch (IOException ex)
         {
-
+            // TODO
         }
     }
 }

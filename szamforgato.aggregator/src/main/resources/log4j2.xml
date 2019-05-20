@@ -21,5 +21,14 @@
         <Logger name="hu.sisisisi.szamforgato.GameController" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
+        <Logger name="hu.sisisisi.szamforgato.SettingsHandler" additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="hu.sisisisi.szamforgato.views.SettingsView" additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="hu.sisisisi.szamforgato.views.MainMenuView" additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>
     </Loggers>
 </Configuration>

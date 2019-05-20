@@ -8,6 +8,10 @@
 #entire .idea directory
 .idea
 
+#scoreboard and setting files
+board*.json
+settings.json
+
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
 <GridPane
     xmlns="http://javafx.com/javafx"
     xmlns:fx="http://javafx.com/fxml"
@@ -13,7 +11,66 @@
     prefWidth="800"
     prefHeight="600">
 
+    <columnConstraints>
+        <ColumnConstraints percentWidth="50" />
+        <ColumnConstraints percentWidth="50" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="10" />
+    </rowConstraints>
+
     <Label
-        text="beállítások" />
+        text="Beállítások"
+        GridPane.columnSpan="2"
+        GridPane.halignment="CENTER" />
+
+    <Label
+        text="Alapértelmezett név:"
+        GridPane.halignment="CENTER"
+        GridPane.rowIndex="1" />
+
+    <TextField
+        fx:id="usernameBox"
+        maxWidth="Infinity"
+        GridPane.fillWidth="true"
+        GridPane.rowIndex="1"
+        GridPane.columnIndex="1" />
+
+    <Label
+        text="Alapértelmezett táblaméret:"
+        GridPane.halignment="CENTER"
+        GridPane.rowIndex="2" />
+
+    <TextField
+        fx:id="tableSizeBox"
+        maxWidth="Infinity"
+        GridPane.fillWidth="true"
+        GridPane.rowIndex="2"
+        GridPane.columnIndex="1" />
+
+    <Button
+        fx:id="saveButton"
+        text="Mentés és vissza a főmenübe"
+        onMouseClicked="#handleSaveSettingsClick"
+        maxWidth="Infinity"
+        GridPane.columnSpan="2"
+        GridPane.rowIndex="9"
+        GridPane.fillWidth="true">
+        <GridPane.margin>
+            <Insets>
+                <left>4</left>
+                <right>4</right>
+            </Insets>
+        </GridPane.margin>
+    </Button>
 
 </GridPane>

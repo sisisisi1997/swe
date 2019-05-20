@@ -2,15 +2,11 @@ package hu.sisisisi.szamforgato.views;
 
 import hu.sisisisi.szamforgato.MainApp;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,14 +19,14 @@ public class MainMenuView
     @FXML
     private GridPane mainMenu;
     @FXML
-    private Button exitButton;
-
-    private Thread exitRedThread;
-    private Paint defaultTextFill;
-    private boolean isDefTextFillSet = false;
+    private Button newGameButton;
+    @FXML
+    private Button settingsButton;
+    @FXML
+    public Button scoreBoardButton;
 
     @FXML
-    private void handleNewGameAction(ActionEvent event)
+    private void handleNewGameClick()
     {
         try
         {
@@ -38,12 +34,13 @@ public class MainMenuView
         }
         catch(IOException e)
         {
-
+            logger.error("A játék elkezdése sikertelen.");
+            ViewUtilities.showButtonErrorText(newGameButton, "A játék elkezdése sikertelen.");
         }
     }
 
     @FXML
-    private void handleSettingsAction(ActionEvent event)
+    private void handleSettingsClick()
     {
         try
         {
@@ -51,50 +48,15 @@ public class MainMenuView
         }
         catch(IOException e)
         {
-
+            logger.error("A beállítások megnyitása sikertelen.");
+            ViewUtilities.showButtonErrorText(settingsButton, "A beállítások megnyitása sikertelen.");
         }
     }
 
     @FXML
-    private void handleExitAction(MouseEvent event)
+    private void handleExitClick()
     {
-        try
-        {
-            MainApp.getAppInstance().stop();
-        }
-        catch(Exception e)
-        {
-            if(exitRedThread != null && exitRedThread.isAlive())
-            {
-                exitRedThread.interrupt();
-            }
-            logger.error("Sikertelen kilépés");
-            final Paint p = isDefTextFillSet ? defaultTextFill : exitButton.getTextFill();
-            if(!isDefTextFillSet) // nem tudjuk itt beállítani a p-t, mert final
-            {
-                this.defaultTextFill = p;
-                this.isDefTextFillSet = true;
-            }
-            exitButton.setTextFill(Color.RED);
-            exitButton.setText("Sikertelen kilépés!");
-            exitRedThread = new Thread(() ->
-            {
-                try
-                {
-                    Thread.sleep(1500);
-                    Platform.runLater(() ->
-                    {
-                        exitButton.setText("Kilépés");
-                        exitButton.setTextFill(p);
-                    });
-                }
-                catch(InterruptedException ex)
-                {
-                    // resetelve lett az idő addig, amíg visszíállítjuk
-                }
-            });
-            exitRedThread.start();
-        }
+        Platform.exit();
     }
 
     public void initialize()
@@ -109,14 +71,16 @@ public class MainMenuView
         }
     }
 
-    public void handleScoreClick(MouseEvent event) {
+    public void handleScoreClick()
+    {
         try
         {
             MainApp.getAppInstance().showPage(MainApp.Pages.ScoreBoard);
         }
         catch (IOException e)
         {
-
+            logger.error("A ranglétra betöltése sikertelen.");
+            ViewUtilities.showButtonErrorText(scoreBoardButton, "A ranglétra betöltése sikertelen.");
         }
     }
 }

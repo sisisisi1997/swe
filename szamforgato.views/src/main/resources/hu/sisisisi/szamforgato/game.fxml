@@ -12,8 +12,7 @@
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="hu.sisisisi.szamforgato.views.GameView"
     prefWidth="800"
-    prefHeight="600"
-    gridLinesVisible="true">
+    prefHeight="600">
 
 
 </GridPane>

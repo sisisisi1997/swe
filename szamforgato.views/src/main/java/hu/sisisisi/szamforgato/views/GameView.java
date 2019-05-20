@@ -1,5 +1,6 @@
 package hu.sisisisi.szamforgato.views;
 
+import hu.sisisisi.szamforgato.MainApp;
 import hu.sisisisi.szamforgato.controller.GameController;
 import hu.sisisisi.szamforgato.controller.IGameView;
 import hu.sisisisi.szamforgato.modelling.Direction;
@@ -261,10 +262,27 @@ public class GameView implements IGameView
         Button retryButton = new Button("Új játék");
         retryButton.setMaxWidth(Double.POSITIVE_INFINITY);
         GridPane.setFillWidth(retryButton, true);
-        gameGrid.add(retryButton, 1, 1, rowColCount + 2, rowColCount + 2);
+        gameGrid.add(retryButton, 1, 1, rowColCount + 2, 1);
+
+        Button backToMenuButton = new Button("Vissza a főmenübe");
+        backToMenuButton.setMaxWidth(Double.POSITIVE_INFINITY);
+        GridPane.setFillWidth(backToMenuButton, true);
+        gameGrid.add(backToMenuButton, 1, 2, rowColCount + 2, 1);
 
         retryButton.setOnMouseClicked((mouseEvent ->
             GameController.getInstance().createGameState(rowColCount)));
+
+        backToMenuButton.setOnMouseClicked((mouseEvent ->
+        {
+            try
+            {
+                MainApp.getAppInstance().showPage(MainApp.Pages.MainMenu);
+            }
+            catch(IOException e)
+            {
+                ViewUtilities.showButtonErrorText(backToMenuButton, "Sikertelen a főmenü betöltése");
+            }
+        }));
     }
 
     public void updateStepCount(int count)

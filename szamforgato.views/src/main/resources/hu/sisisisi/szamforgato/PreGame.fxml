@@ -53,6 +53,7 @@
         GridPane.columnIndex="2"
         GridPane.rowIndex="3" />
     <Button
+        fx:id="startButton"
         text="Kezdés"
         onMouseClicked="#startButtonClicked"
         GridPane.columnIndex="1"
