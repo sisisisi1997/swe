@@ -10,6 +10,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
+/**
+ * Ez a nézet megjeleníti a beállításokat.
+ */
 public class SettingsView
 {
     private static Logger logger = LoggerFactory.getLogger(SettingsView.class);
@@ -21,7 +24,8 @@ public class SettingsView
     @FXML
     private Button saveButton;
 
-    public void initialize()
+    @FXML
+    private void initialize()
     {
         SettingsHandler settings = SettingsHandler.getSettings();
         this.usernameBox.setText(settings.getUsername());
@@ -29,7 +33,7 @@ public class SettingsView
     }
 
     @FXML
-    public void handleSaveSettingsClick()
+    private void handleSaveSettingsClick()
     {
         SettingsHandler handler = SettingsHandler.getSettings();
         handler.setTableSize(Integer.parseInt(tableSizeBox.getText()));

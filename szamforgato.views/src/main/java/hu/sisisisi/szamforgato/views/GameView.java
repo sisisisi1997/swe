@@ -23,6 +23,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
+/**
+ * A játéknézetet vezérlő osztály.
+ */
 public class GameView implements IGameView
 {
     private static Logger logger = LoggerFactory.getLogger(GameView.class);
@@ -41,7 +44,8 @@ public class GameView implements IGameView
                       upImage,
                       downImage;
 
-    public void initialize()
+    @FXML
+    private void initialize()
     {
         try
         {
@@ -107,6 +111,12 @@ public class GameView implements IGameView
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     * @param col {@inheritDoc}
+     * @param row {@inheritDoc}
+     * @param value {@inheritDoc}
+     */
     public void updateCell(int col, int row, int value)
     {
         labels[col][row].setText(Integer.toString(value));
@@ -174,6 +184,10 @@ public class GameView implements IGameView
         gameGrid.getRowConstraints().add(r2);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param size {@inheritDoc}
+     */
     public void createGameTable(int size)
     {
         this.rowColCount = size;
@@ -211,6 +225,11 @@ public class GameView implements IGameView
         gameGrid.add(stepCounter, 2, rowColCount + 3, rowColCount, 1);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param col {@inheritDoc}
+     * @param row {@inheritDoc}
+     */
     public void selectCell(int col, int row)
     {
         Background redBackground = new Background(new BackgroundFill(Color.RED, new CornerRadii(0), null));
@@ -248,6 +267,9 @@ public class GameView implements IGameView
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void displayWin()
     {
         gameGrid.getChildren().forEach(e -> e.setVisible(false));
@@ -285,6 +307,10 @@ public class GameView implements IGameView
         }));
     }
 
+    /**
+     * {@inheritDoc}
+     * @param count {@inheritDoc}
+     */
     public void updateStepCount(int count)
     {
         stepCounter.setText("Lépések száma: " + count);

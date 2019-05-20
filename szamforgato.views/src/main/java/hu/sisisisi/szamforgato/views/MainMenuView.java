@@ -12,6 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
+/**
+ * A főmenü nézete, mely gombokat tartalmaz a többi nézetre való navigáláshoz.
+ */
 public class MainMenuView
 {
     private static Logger logger = LoggerFactory.getLogger(MainMenuView.class);
@@ -23,7 +26,7 @@ public class MainMenuView
     @FXML
     private Button settingsButton;
     @FXML
-    public Button scoreBoardButton;
+    private Button scoreBoardButton;
 
     @FXML
     private void handleNewGameClick()
@@ -59,7 +62,8 @@ public class MainMenuView
         Platform.exit();
     }
 
-    public void initialize()
+    @FXML
+    private void initialize()
     {
         for(Node e : mainMenu.getChildren())
         {
@@ -71,7 +75,8 @@ public class MainMenuView
         }
     }
 
-    public void handleScoreClick()
+    @FXML
+    private void handleScoreClick()
     {
         try
         {

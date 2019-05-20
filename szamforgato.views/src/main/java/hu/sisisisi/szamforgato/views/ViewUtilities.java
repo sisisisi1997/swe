@@ -7,10 +7,18 @@ import javafx.scene.paint.Paint;
 
 import java.util.HashMap;
 
+/**
+ * Az osztály utility metódusokat tartalmaz a java scene view-ok kezelésére.
+ */
 class ViewUtilities
 {
     private static HashMap<Button, ButtonData> buttonData = new HashMap<>();
 
+    /**
+     * A gomb eredeti szövege helyett másfél másodpercig megjeleníti a megadott hibaüzenetet vörös színben.
+     * @param b A gomb.
+     * @param errorText A hibaüzenet.
+     */
     static void showButtonErrorText(Button b, String errorText)
     {
         ButtonData manipulationData = buttonData.get(b);

@@ -11,18 +11,22 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
+/**
+ * Ez a játék elkezdése előtti nézet, mely lehetőséget ad a játékosnak a táblaméret és a felhasználónév beállítására.
+ */
 public class PreGameView
 {
     private static Logger logger = LoggerFactory.getLogger(PreGameView.class);
 
-    public void initialize()
+    @FXML
+    private void initialize()
     {
         this.tableSizeText.setText(Integer.toString(SettingsHandler.getSettings().getTableSize()));
         this.playerNameText.setText(SettingsHandler.getSettings().getUsername());
     }
 
     @FXML
-    public TextField playerNameText;
+    private TextField playerNameText;
 
     @FXML
     private TextField tableSizeText;
@@ -30,7 +34,8 @@ public class PreGameView
     @FXML
     private Button startButton;
 
-    public void startButtonClicked()
+    @FXML
+    private void startButtonClicked()
     {
         int size = Integer.parseInt(tableSizeText.getText());
         GameController.getInstance().setName(playerNameText.getText());

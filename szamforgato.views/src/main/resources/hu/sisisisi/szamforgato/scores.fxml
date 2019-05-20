@@ -1,44 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
 <GridPane
     fx:id="scoreGrid"
     xmlns="http://javafx.com/javafx"
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="hu.sisisisi.szamforgato.views.ScoreView"
     prefWidth="800.0"
-    prefHeight="600.0">
+    prefHeight="600.0"
+    gridLinesVisible="true">
 
     <columnConstraints>
-        <ColumnConstraints percentWidth="50" />
+        <ColumnConstraints percentWidth="25" />
+        <ColumnConstraints percentWidth="25" />
         <ColumnConstraints percentWidth="50" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints percentHeight="10" />
-        <RowConstraints percentHeight="9" />
-        <RowConstraints percentHeight="9" />
-        <RowConstraints percentHeight="9" />
-        <RowConstraints percentHeight="9" />
-        <RowConstraints percentHeight="9" />
-        <RowConstraints percentHeight="9" />
-        <RowConstraints percentHeight="9" />
-        <RowConstraints percentHeight="9" />
-        <RowConstraints percentHeight="9" />
-        <RowConstraints percentHeight="9" />
+        <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="8" />
+        <RowConstraints percentHeight="8" />
+        <RowConstraints percentHeight="8" />
+        <RowConstraints percentHeight="8" />
+        <RowConstraints percentHeight="8" />
+        <RowConstraints percentHeight="8" />
+        <RowConstraints percentHeight="8" />
+        <RowConstraints percentHeight="8" />
+        <RowConstraints percentHeight="8" />
+        <RowConstraints percentHeight="8" />
     </rowConstraints>
 
+    <Button
+        fx:id="backToMenuButton"
+        text="Vissza a főmenübe"
+        GridPane.columnSpan="3"
+        onMouseClicked="#handleBackToMenuClick"
+        maxWidth="Infinity"
+        GridPane.fillWidth="true" />
     <Label
         text="Táblaméret:"
-        GridPane.halignment="CENTER" />
+        GridPane.halignment="CENTER"
+        GridPane.rowIndex="1"/>
     <TextField
-        onKeyPressed="#handleSizeChanged"
+        onKeyPressed="#handleTextChanged"
         fx:id="sizeText"
         text="5"
         maxWidth="Infinity"
-        GridPane.fillWidth="true" />
+        GridPane.fillWidth="true"
+        GridPane.rowIndex="1"
+        GridPane.columnIndex="1"/>
+    <Button
+        onMouseClicked="#handleLoadScores"
+        text="Pontok betöltése"
+        maxWidth="Infinity"
+        GridPane.fillWidth="true"
+        GridPane.rowIndex="1"
+        GridPane.columnIndex="2">
+        <GridPane.margin>
+            <Insets>
+                <top>2</top>
+                <bottom>2</bottom>
+                <left>2</left>
+                <right>2</right>
+            </Insets>
+        </GridPane.margin>
+    </Button>
 </GridPane>

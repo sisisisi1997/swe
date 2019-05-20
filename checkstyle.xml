@@ -5,9 +5,15 @@
 <module name="Checker">
     <module name="JavadocPackage"/>
     <module name="TreeWalker">
-        <module name="JavadocType"/>
-        <module name="JavadocMethod"/>
-        <module name="JavadocVariable"/>
+        <module name="JavadocType">
+            <property name="scope" value="package" />
+        </module>
+        <module name="JavadocMethod">
+            <property name="scope" value="package" />
+        </module>
+        <module name="JavadocVariable">
+            <property name="scope" value="package" />
+        </module>
         <module name="JavadocStyle"/>
     </module>
 </module>
