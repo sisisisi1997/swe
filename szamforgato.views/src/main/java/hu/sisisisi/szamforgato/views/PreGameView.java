@@ -1,6 +1,6 @@
 package hu.sisisisi.szamforgato.views;
 
-import hu.sisisisi.szamforgato.GameController;
+import hu.sisisisi.szamforgato.controller.GameController;
 import hu.sisisisi.szamforgato.MainApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

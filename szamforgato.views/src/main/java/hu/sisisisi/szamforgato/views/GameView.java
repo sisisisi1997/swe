@@ -1,11 +1,14 @@
 package hu.sisisisi.szamforgato.views;
 
-import hu.sisisisi.szamforgato.GameController;
-import hu.sisisisi.szamforgato.IGameView;
-import hu.sisisisi.szamforgato.model.Direction;
+import hu.sisisisi.szamforgato.controller.GameController;
+import hu.sisisisi.szamforgato.controller.IGameView;
+import hu.sisisisi.szamforgato.modelling.Direction;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.geometry.*;
+import javafx.geometry.Bounds;
+import javafx.geometry.HPos;
+import javafx.geometry.Point2D;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -14,9 +17,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 public class GameView implements IGameView
 {
@@ -60,10 +64,15 @@ public class GameView implements IGameView
             upImage = new ImageView(new Image(l.getResource("Up.png").openStream()));
             downImage = new ImageView(new Image(l.getResource("Down.png").openStream()));
         }
-        catch (Exception e)
+        catch(NullPointerException e)
         {
-           logger.error("Nem lehetett betölteni a nyílgombokat, kilépés.");
+           logger.error("Nyilak betöltése sikertelen: forrásfájl nem található.");
            return false;
+        }
+        catch(IOException e)
+        {
+            logger.error("Nyilak betöltése sikertelen: IO hiba.");
+            return false;
         }
 
         GridPane.setHalignment(leftImage, HPos.CENTER);
@@ -255,9 +264,7 @@ public class GameView implements IGameView
         gameGrid.add(retryButton, 1, 1, rowColCount + 2, rowColCount + 2);
 
         retryButton.setOnMouseClicked((mouseEvent ->
-        {
-            GameController.getInstance().createGameState(rowColCount);
-        }));
+            GameController.getInstance().createGameState(rowColCount)));
     }
 
     public void updateStepCount(int count)

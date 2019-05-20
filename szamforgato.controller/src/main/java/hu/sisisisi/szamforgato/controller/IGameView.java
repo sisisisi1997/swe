@@ -1,4 +1,4 @@
-package hu.sisisisi.szamforgato;
+package hu.sisisisi.szamforgato.controller;
 
 public interface IGameView
 {

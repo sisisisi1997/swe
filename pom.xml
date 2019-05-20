@@ -5,7 +5,13 @@
     <groupId>hu.sisisisi</groupId>
     <artifactId>szamforgato</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>szamforgato.modelling</module>
+        <module>szamforgato.views</module>
+        <module>szamforgato.controller</module>
+        <module>szamforgato.aggregator</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <scm>
         <connection>scm:git:https://github.com/sisisisi1997/swe.git</connection>

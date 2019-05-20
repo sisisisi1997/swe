@@ -1,6 +1,7 @@
-package hu.sisisisi.szamforgato.model;
+package hu.sisisisi.szamforgato.modelling;
 
 import java.util.Random;
+
 
 /**
  * Az osztály egy játékállapotot reprezentál, és alkalmas annak manipulálására.
@@ -52,16 +53,16 @@ public class GameState
         // egy véletlenszerű számot az eddig fel nem használtak közül, nem biztos, hogy megoldható lenne a játék.
         Random rn = new Random();
         Direction[] directions = new Direction[]
-        {
-           Direction.Left,
-           Direction.Right,
-           Direction.Up,
-           Direction.Down
-        };
+                {
+                        Direction.Left,
+                        Direction.Right,
+                        Direction.Up,
+                        Direction.Down
+                };
 
         //for(int i = 0, max = 1; i < max; ++ i)
         //{
-            this.modifyState(rn.nextInt(this.size), directions[rn.nextInt(directions.length)]);
+        this.modifyState(rn.nextInt(this.size), directions[rn.nextInt(directions.length)]);
         //}
     }
 

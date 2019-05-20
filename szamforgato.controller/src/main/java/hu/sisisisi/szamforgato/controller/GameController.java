@@ -1,13 +1,14 @@
-package hu.sisisisi.szamforgato;
+package hu.sisisisi.szamforgato.controller;
 
-import hu.sisisisi.szamforgato.model.Direction;
-import hu.sisisisi.szamforgato.model.GameState;
+import hu.sisisisi.szamforgato.ScoreBoardHandler;
+import hu.sisisisi.szamforgato.modelling.Direction;
+import hu.sisisisi.szamforgato.modelling.GameState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Az MVC vezérlő osztály a játék lejátszásához.
- * Kezelni tud bármilyen nézetet, mely implementálja az {@link hu.sisisisi.szamforgato.IGameView} interfészt.
+ * Kezelni tud bármilyen nézetet, mely implementálja az {@link IGameView} interfészt.
  */
 public class GameController
 {
@@ -17,8 +18,8 @@ public class GameController
     private IGameView gameView;
     private GameState gameState;
     private int selectedRow,
-                selectedCol,
-                numberOfSteps = 0;
+            selectedCol,
+            numberOfSteps = 0;
     private String name = "default";
 
     /**
@@ -117,7 +118,7 @@ public class GameController
     /**
      * Lekezeli, ha a felhasználó lépteti a játékállapotot, és a tárolt állapotot a lépésnek megfelelően frissíti.
      * Ha van nézet, a lépésnek megfelelően frissíti azt.
-     * @param d Az irány (egy {@link hu.sisisisi.szamforgato.model.Direction} példány), melybe a játékos lépett.
+     * @param d Az irány (egy {@link Direction} példány), melybe a játékos lépett.
      */
     public void userInputReceived(Direction d)
     {

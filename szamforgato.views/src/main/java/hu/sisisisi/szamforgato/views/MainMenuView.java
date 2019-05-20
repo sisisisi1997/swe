@@ -1,7 +1,6 @@
 package hu.sisisisi.szamforgato.views;
 
 import hu.sisisisi.szamforgato.MainApp;
-import hu.sisisisi.szamforgato.ScoreBoardHandler;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +14,6 @@ import javafx.scene.paint.Paint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class MainMenuView
