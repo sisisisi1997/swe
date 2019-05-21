@@ -13,6 +13,13 @@
     </modules>
     <packaging>pom</packaging>
 
+    <distributionManagement>
+        <site>
+            <id>szamforgato</id>
+            <url>http://84.3.77.90:50433/swe</url>
+        </site>
+    </distributionManagement>
+
     <scm>
         <connection>scm:git:https://github.com/sisisisi1997/swe.git</connection>
         <url>https://github.com/sisisisi1997/swe</url>
