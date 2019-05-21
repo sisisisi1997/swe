@@ -56,17 +56,13 @@ public class ScoreView
 
             pontok[i] = new Label();
             GridPane.setHalignment(pontok[i], HPos.CENTER);
-            scoreGrid.add(pontok[i], 1, i + 2);
+            scoreGrid.add(pontok[i], 2, i + 2);
         }
     }
 
     @FXML
     private void handleTextChanged(KeyEvent event)
     {
-        if(white == null)
-        {
-            white = sizeText.getBackground();
-        }
         if(event.getCode() == KeyCode.ENTER)
         {
             handleLoadScores();
@@ -76,6 +72,11 @@ public class ScoreView
     @FXML
     private void handleLoadScores()
     {
+        if(white == null)
+        {
+            white = sizeText.getBackground();
+        }
+
         try
         {
             int size = Integer.parseInt(sizeText.getText());

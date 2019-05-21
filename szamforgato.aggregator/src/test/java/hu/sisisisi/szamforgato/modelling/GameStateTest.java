@@ -11,7 +11,7 @@ public class GameStateTest
     private GameState state2 = new GameState(10);
 
     @Test
-    public void getSize()
+    void getSize()
     {
         assertEquals(5, state.getSize());
         assertEquals(10, state2.getSize());
